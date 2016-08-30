@@ -6,6 +6,7 @@ import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
+import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.*;
 
 /**
@@ -27,6 +28,7 @@ public class MyUI extends UI {
         });
 
         Upload upload = new Upload(null, (file, mime) -> null);
+        upload.setImmediate(true);
         upload.setButtonCaption("Upload");
         upload.setDescription("Upload");
         upload.setId("package-upload-button");
@@ -34,17 +36,21 @@ public class MyUI extends UI {
 
         HorizontalLayout div1 = new HorizontalLayout();
         div1.setMargin(true);
-        div1.setSpacing(true);
         div1.addComponent(menuBar);
 
         HorizontalLayout div2 = new HorizontalLayout();
         div2.setMargin(true);
-        div2.setSpacing(true);
         div2.addComponent(upload);
 
         layout.setMargin(true);
-        layout.setSpacing(true);
-        layout.addComponents(div1, div2);
+        layout.addComponents(
+            new Label("Click the menubar item below to open file selection dialog via Javascript.\n" +
+                    "Only works in IE/Edge at the moment :(\n\n" +
+                    "Copy&pasting this to the console also works in Chrome:\n" +
+                    "document.getElementById('package-upload-button').getElementsByClassName('gwt-FileUpload')[0].click();", ContentMode.PREFORMATTED),
+            div1,
+            div2
+        );
         
         setContent(layout);
     }
