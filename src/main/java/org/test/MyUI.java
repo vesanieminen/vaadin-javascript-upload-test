@@ -24,7 +24,7 @@ public class MyUI extends UI {
         final VerticalLayout layout = new VerticalLayout();
         MenuBar menuBar = new MenuBar();
         menuBar.addItem("Import", (item) -> {
-            JavaScript.eval("document.getElementById('package-upload-button').getElementsByClassName('gwt-FileUpload')[0].click();");
+            JavaScript.eval("document.getElementById('package-upload-button').elements[1].click();");
         });
 
         Upload upload = new Upload(null, (file, mime) -> null);
@@ -47,7 +47,7 @@ public class MyUI extends UI {
             new Label("Click the menubar item below to open file selection dialog via Javascript.\n" +
                     "Only works in IE/Edge at the moment :(\n\n" +
                     "Copy&pasting this to the console also works in Chrome:\n" +
-                    "document.getElementById('package-upload-button').getElementsByClassName('gwt-FileUpload')[0].click();", ContentMode.PREFORMATTED),
+                    "document.getElementById('package-upload-button').elements[1].click();", ContentMode.PREFORMATTED),
             div1,
             div2
         );
